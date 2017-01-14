@@ -58,4 +58,6 @@ public class Question extends AbstractEntity {
 	public void deleteAnswer() {
 		this.countOfAnswer -= 1;
 	}
+	
+	
 }
