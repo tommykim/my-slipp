@@ -13,27 +13,14 @@ import net.slipp.domain.QuestionRepository;
 public class HomeController {
 	@Autowired
 	private QuestionRepository questionRepository;
-	private CpuRepository cpuRepository;
-	private BatteryRepository batteryRepository;
 	
 	@GetMapping("")
-	public String home(Model model) {
-		model.addAttribute("questions", questionRepository.findAll());
-		return "index";
+	public String home(String gubun,Model model) {
+		if (gubun == null) {
+		    model.addAttribute("questions", questionRepository.findAll());
+		  } else {
+		    //model.addAttribute("questions", questionRepository.findByGubun(gubun));
+		  }
+		 return "index";
 	}
-	
-	@GetMapping("/cpu")
-	public String cpu(Model model) {
-		model.addAttribute("cpu", cpuRepository.findAll());
-		return "index";
-	}
-	
-	@GetMapping("/battery")
-	public String battery(Model model) {
-		model.addAttribute("battery", batteryRepository.findAll());
-		return "index";
-	}
-	
-	
-	
-}
+}	

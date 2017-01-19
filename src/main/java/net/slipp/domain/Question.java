@@ -2,6 +2,7 @@ package net.slipp.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
@@ -20,11 +21,16 @@ public class Question extends AbstractEntity {
 	private User writer;
 	
 	@JsonProperty
+	@Column(length=100, nullable=false)
 	private String title;
 	
 	@Lob
 	@JsonProperty
 	private String contents;
+	
+	@JsonProperty
+	@Column(length=10, nullable=false)
+	private String gubun;
 	
 	@JsonProperty
 	private Integer countOfAnswer = 0;
@@ -35,10 +41,11 @@ public class Question extends AbstractEntity {
 	
 	public Question() {}
 	
-	public Question(User writer, String title, String contents) {
+	public Question(User writer, String title, String contents, String gubun) {
 		this.writer = writer;
 		this.title = title;
 		this.contents = contents;
+		this.gubun = gubun;
 	}
 	
 	public void update(String title, String contents) {

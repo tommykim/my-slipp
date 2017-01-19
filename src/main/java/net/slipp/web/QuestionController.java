@@ -33,13 +33,13 @@ public class QuestionController {
 	}
 	
 	@PostMapping("")
-	public String create(String title, String contents, HttpSession session) {
+	public String create(String title, String contents, HttpSession session, String gubun) {
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "/users/loginForm";
 		}
 		
 		User sessionUser = HttpSessionUtils.getUserFromSession(session);
-		Question newQuestion = new Question(sessionUser, title, contents);
+		Question newQuestion = new Question(sessionUser, title, contents, gubun);
 		questionRepository.save(newQuestion);
 		return "redirect:/";
 	}
